@@ -5,6 +5,13 @@
 let movies = JSON.parse(localStorage.getItem("movies")) || [];
 
 // ==============================
+// SAVE
+// ==============================
+function saveMovies(){
+    localStorage.setItem("movies", JSON.stringify(movies));
+}
+
+// ==============================
 // ADD MOVIE
 // ==============================
 function addMovie(){
@@ -14,7 +21,10 @@ function addMovie(){
     const movie = document.getElementById("movie").value;
     const section = document.getElementById("section").value;
 
-    if(!title || !poster || !movie) return alert("Fill all fields");
+    if(!title || !poster || !movie){
+        alert("Fill all fields");
+        return;
+    }
 
     const newMovie = {
         id: Date.now(),
@@ -25,40 +35,38 @@ function addMovie(){
     };
 
     movies.push(newMovie);
-    localStorage.setItem("movies", JSON.stringify(movies));
-
+    saveMovies();
     renderAdminMovies();
 }
 
 // ==============================
-// DELETE
+// DELETE MOVIE
 // ==============================
 function deleteMovie(index){
-
     movies.splice(index, 1);
-    localStorage.setItem("movies", JSON.stringify(movies));
-
+    saveMovies();
     renderAdminMovies();
 }
 
 // ==============================
-// EDIT
+// EDIT MOVIE
 // ==============================
 function editMovie(index){
 
-    const newTitle = prompt("New Title:", movies[index].title);
-    const newPoster = prompt("New Poster:", movies[index].poster);
+    const newTitle = prompt("Edit Title:", movies[index].title);
+    const newPoster = prompt("Edit Poster:", movies[index].poster);
+    const newMovie = prompt("Edit Movie URL:", movies[index].movie);
 
     if(newTitle) movies[index].title = newTitle;
     if(newPoster) movies[index].poster = newPoster;
+    if(newMovie) movies[index].movie = newMovie;
 
-    localStorage.setItem("movies", JSON.stringify(movies));
-
+    saveMovies();
     renderAdminMovies();
 }
 
 // ==============================
-// RENDER ADMIN
+// RENDER ADMIN LIST
 // ==============================
 function renderAdminMovies(){
 
@@ -69,13 +77,17 @@ function renderAdminMovies(){
 
         list.innerHTML += `
         <div class="admin-card">
-            <img src="${m.poster}">
-            <p>${m.title}</p>
+            <img src="${m.poster}" width="120">
+            <h3>${m.title}</h3>
 
             <button onclick="editMovie(${i})">✏ Edit</button>
             <button onclick="deleteMovie(${i})">🗑 Delete</button>
-        </div>`;
+        </div>
+        `;
     });
 }
 
+// ==============================
+// INIT
+// ==============================
 renderAdminMovies();
