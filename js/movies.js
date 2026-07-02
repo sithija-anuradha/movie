@@ -1,5 +1,12 @@
+
+// ==============================
+// USER
+// ==============================
 const userName = "Pancho🎀";
 
+// ==============================
+// GUEST GREETING (optional safe)
+// ==============================
 function setGreeting(){
 
     const hour = new Date().getHours();
@@ -18,36 +25,38 @@ function setGreeting(){
         greeting = "Good Night";
     }
 
-    document.getElementById("greetingText").innerText =
-    `${greeting}, ${userName}`;
-
+    const el = document.getElementById("greetingText");
+    if(el){
+        el.innerText = `${greeting}, ${userName}`;
+    }
 }
 
 setGreeting();
-// ==============================
-// LOAD MOVIES (ADMIN + DEFAULT)
-// ==============================
 
+// ==============================
+// DEFAULT MOVIES
+// ==============================
 const defaultMovies = [
 {
     id:1,
     title:"Voicemails for Isabelle",
-    poster:"https://placehold.co/300x450/111/fff?text=Isabelle",
+    poster:"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTNIAg11tVML7vTgmP8R97YxiIZ-y0_8b57UaVHRzPEy_tkYS5I",
     section:"favorites",
     movie:"https://streamimdb.ru/embed/movie/tt10375624"
 }
 ];
 
-// Get admin movies
+// ==============================
+// LOAD ADMIN MOVIES
+// ==============================
 let adminMovies = JSON.parse(localStorage.getItem("movies")) || [];
 
-// Merge both
+// merge
 let movies = [...defaultMovies, ...adminMovies];
 
 // ==============================
 // ELEMENTS
 // ==============================
-
 const favoritesRow = document.getElementById("favoritesRow");
 const requestedRow = document.getElementById("requestedRow");
 const tonightRow = document.getElementById("tonightRow");
@@ -56,7 +65,6 @@ const recentRow = document.getElementById("recentRow");
 // ==============================
 // RENDER MOVIES
 // ==============================
-
 function renderMovies(){
 
     favoritesRow.innerHTML = "";
@@ -76,15 +84,12 @@ function renderMovies(){
         if(movie.section === "favorites"){
             favoritesRow.innerHTML += card;
         }
-
         else if(movie.section === "requested"){
             requestedRow.innerHTML += card;
         }
-
         else if(movie.section === "tonight"){
             tonightRow.innerHTML += card;
         }
-
         else if(movie.section === "recent"){
             recentRow.innerHTML += card;
         }
@@ -94,9 +99,34 @@ function renderMovies(){
 }
 
 // ==============================
+// FEATURED MOVIE FIX
+// ==============================
+function loadFeaturedMovie(){
+
+    const allMovies = [...defaultMovies, ...adminMovies];
+
+    const featured = allMovies.find(m => m.section === "featured");
+
+    const box = document.getElementById("featuredBox");
+
+    if(featured){
+
+        box.innerHTML = `
+        <div class="card" onclick="openMovie(${featured.id})">
+            <img src="${featured.poster}">
+            <p>${featured.title}</p>
+        </div>
+        `;
+
+    } else {
+        box.innerHTML = "<p>No Featured Movie Selected</p>";
+    }
+
+}
+
+// ==============================
 // OPEN MOVIE
 // ==============================
-
 function openMovie(id){
 
     const movie = movies.find(m => m.id === id);
@@ -107,6 +137,9 @@ function openMovie(id){
 
 }
 
+// ==============================
+// SEARCH
+// ==============================
 document.getElementById("searchInput").addEventListener("input", function () {
 
     const value = this.value.toLowerCase();
@@ -155,5 +188,5 @@ function renderFilteredMovies(list){
 // ==============================
 // INIT
 // ==============================
-
 renderMovies();
+loadFeaturedMovie();
