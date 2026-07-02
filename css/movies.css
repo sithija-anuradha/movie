@@ -253,3 +253,27 @@
     }
 
 }
+
+.movie-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    color:#FFD54F;
+
+    font-size:14px;
+
+}
+
+.movie-info small{
+
+    color:#9b9b9b;
+
+    margin-bottom:18px;
+
+    display:block;
+
+}
