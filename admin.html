@@ -1,49 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Private Cinema</title>
 
-<title>Admin Panel</title>
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="movies.css">
 </head>
 
 <body>
 
-<div class="admin-container">
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h2>🎬 Admin Panel</h2>
+    </div>
 
-    <h1>👑 Admin Panel</h1>
+    <!-- ADD MOVIE FORM -->
+    <div class="section">
 
-    <p>Add movies to Private Cinema</p>
+        <h2>Add Movie</h2>
 
-    <div class="form">
-
-        <input type="text" id="title" placeholder="Movie Title">
-        <input type="text" id="poster" placeholder="Poster URL">
-        <input type="text" id="movie" placeholder="Movie Embed Link">
+        <input id="title" type="text" placeholder="Movie Title">
+        <input id="poster" type="text" placeholder="Poster URL">
+        <input id="movie" type="text" placeholder="Movie URL">
 
         <select id="section">
             <option value="favorites">❤️ Favorites</option>
             <option value="requested">🎁 Requested</option>
-            <option value="tonight">🎬 Movies For Tonight</option>
-            <option value="recent">🆕 Recently Added</option>
+            <option value="tonight">🎬 Tonight</option>
         </select>
 
         <button onclick="addMovie()">➕ Add Movie</button>
 
     </div>
 
-    <h2>Current Movies</h2>
+    <!-- ADMIN MOVIE LIST -->
+    <div class="section">
 
-    <div id="movieList"></div>
+        <h2>📋 Movies List</h2>
 
-</div>
+        <div id="adminList"></div>
 
-<script src="js/admin.js"></script>
+    </div>
+
+    <script src="js/admin.js"></script>
 
 </body>
-
 </html>
