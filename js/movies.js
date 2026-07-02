@@ -1,6 +1,6 @@
 
 // ==============================
-// USER + GREETING
+// USER GREETING
 // ==============================
 const userName = "Pancho🎀";
 
@@ -22,17 +22,10 @@ setGreeting();
 // ==============================
 // DATA
 // ==============================
-const defaultMovies = [
-{
-    id:1,
-    title:"Voicemails for Isabelle",
-    poster:"https://placehold.co/300x450/111/fff?text=Isabelle",
-    section:"favorites",
-    movie:"https://streamimdb.ru/embed/movie/tt10375624"
-}
-];
+const defaultMovies = [];
 
 let adminMovies = JSON.parse(localStorage.getItem("movies")) || [];
+
 let movies = [...defaultMovies, ...adminMovies];
 
 // ==============================
@@ -72,7 +65,7 @@ function renderMovies(){
 // ==============================
 function loadFeaturedMovie(){
 
-    const all = [...defaultMovies, ...adminMovies];
+    const all = [...movies];
     const featured = all[all.length - 1];
 
     const box = document.getElementById("featuredBox");
@@ -83,8 +76,6 @@ function loadFeaturedMovie(){
             <img src="${featured.poster}">
             <p>${featured.title}</p>
         </div>`;
-    } else {
-        box.innerHTML = "<p>No Featured Movie</p>";
     }
 }
 
@@ -93,16 +84,17 @@ function loadFeaturedMovie(){
 // ==============================
 function renderRecent(){
 
-    const all = [...defaultMovies, ...adminMovies].slice().reverse();
+    const all = [...movies].slice().reverse();
 
+    const recentRow = document.getElementById("recentRow");
     recentRow.innerHTML = "";
 
-    all.forEach(movie => {
+    all.forEach(m => {
 
         recentRow.innerHTML += `
-        <div class="card" onclick="openMovie(${movie.id})">
-            <img src="${movie.poster}">
-            <p>${movie.title}</p>
+        <div class="card" onclick="openMovie(${m.id})">
+            <img src="${m.poster}">
+            <p>${m.title}</p>
         </div>`;
     });
 }
@@ -116,41 +108,6 @@ function openMovie(id){
 
     localStorage.setItem("selectedMovie", JSON.stringify(movie));
     window.location.href = "watch.html";
-}
-
-// ==============================
-// SEARCH
-// ==============================
-document.getElementById("searchInput").addEventListener("input", function(){
-
-    const value = this.value.toLowerCase();
-
-    const filtered = movies.filter(m =>
-        m.title.toLowerCase().includes(value)
-    );
-
-    renderFiltered(filtered);
-});
-
-function renderFiltered(list){
-
-    favoritesRow.innerHTML = "";
-    requestedRow.innerHTML = "";
-    tonightRow.innerHTML = "";
-    recentRow.innerHTML = "";
-
-    list.forEach(movie => {
-
-        const card = `
-        <div class="card" onclick="openMovie(${movie.id})">
-            <img src="${movie.poster}">
-            <p>${movie.title}</p>
-        </div>`;
-
-        if(movie.section === "favorites") favoritesRow.innerHTML += card;
-        else if(movie.section === "requested") requestedRow.innerHTML += card;
-        else if(movie.section === "tonight") tonightRow.innerHTML += card;
-    });
 }
 
 // ==============================
