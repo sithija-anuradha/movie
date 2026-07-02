@@ -1,39 +1,57 @@
-// 👤 User name (optional for future use)
 const userName = "Pancho🎀";
 
-// 🎬 MOVIE DATA
-const movies = [
+function setGreeting(){
+
+    const hour = new Date().getHours();
+    let greeting = "";
+
+    if(hour < 12){
+        greeting = "Good Morning";
+    }
+    else if(hour < 17){
+        greeting = "Good Afternoon";
+    }
+    else if(hour < 21){
+        greeting = "Good Evening";
+    }
+    else{
+        greeting = "Good Night";
+    }
+
+    document.getElementById("greetingText").innerText =
+    `${greeting}, ${userName} ❤️`;
+
+}
+
+setGreeting();
+// ==============================
+// LOAD MOVIES (ADMIN + DEFAULT)
+// ==============================
+
+const defaultMovies = [
 {
     id:1,
     title:"Voicemails for Isabelle",
     poster:"https://placehold.co/300x450/111/fff?text=Isabelle",
-    section:"favorites"
-},
-{
-    id:2,
-    title:"Requested Movie 1",
-    poster:"https://placehold.co/300x450/222/fff?text=Request",
-    section:"requested"
-},
-{
-    id:3,
-    title:"Movie for Tonight",
-    poster:"https://placehold.co/300x450/333/fff?text=Tonight",
-    section:"tonight"
-},
-{
-    id:4,
-    title:"Recently Added Film",
-    poster:"https://placehold.co/300x450/444/fff?text=New",
-    section:"recent"
-},
-{
-    id:5,
-    title:"Another Favorite",
-    poster:"https://placehold.co/300x450/555/fff?text=Fav",
-    section:"favorites"
+    section:"favorites",
+    movie:"https://streamimdb.ru/embed/movie/tt10375624"
 }
 ];
+
+// Get admin movies
+let adminMovies = JSON.parse(localStorage.getItem("movies")) || [];
+
+// Merge both
+let movies = [...defaultMovies, ...adminMovies];
+
+// ==============================
+// ELEMENTS
+// ==============================
+
+const favoritesRow = document.getElementById("favoritesRow");
+const requestedRow = document.getElementById("requestedRow");
+const tonightRow = document.getElementById("tonightRow");
+const recentRow = document.getElementById("recentRow");
 
 // ==============================
 // RENDER MOVIES
@@ -41,32 +59,34 @@ const movies = [
 
 function renderMovies(){
 
+    favoritesRow.innerHTML = "";
+    requestedRow.innerHTML = "";
+    tonightRow.innerHTML = "";
+    recentRow.innerHTML = "";
+
     movies.forEach(movie => {
 
         const card = `
         <div class="card" onclick="openMovie(${movie.id})">
-
-            <img src="${movie.poster}" alt="${movie.title}">
-
+            <img src="${movie.poster}">
             <p>${movie.title}</p>
-
         </div>
         `;
 
         if(movie.section === "favorites"){
-            document.getElementById("favoritesRow").innerHTML += card;
+            favoritesRow.innerHTML += card;
         }
 
-        if(movie.section === "requested"){
-            document.getElementById("requestedRow").innerHTML += card;
+        else if(movie.section === "requested"){
+            requestedRow.innerHTML += card;
         }
 
-        if(movie.section === "tonight"){
-            document.getElementById("tonightRow").innerHTML += card;
+        else if(movie.section === "tonight"){
+            tonightRow.innerHTML += card;
         }
 
-        if(movie.section === "recent"){
-            document.getElementById("recentRow").innerHTML += card;
+        else if(movie.section === "recent"){
+            recentRow.innerHTML += card;
         }
 
     });
@@ -88,7 +108,7 @@ function openMovie(id){
 }
 
 // ==============================
-// SEARCH FUNCTION
+// SEARCH
 // ==============================
 
 document.getElementById("searchInput").addEventListener("input", function(){
@@ -99,11 +119,7 @@ document.getElementById("searchInput").addEventListener("input", function(){
 
         const text = card.innerText.toLowerCase();
 
-        if(text.includes(value)){
-            card.style.display = "block";
-        }else{
-            card.style.display = "none";
-        }
+        card.style.display = text.includes(value) ? "block" : "none";
 
     });
 
