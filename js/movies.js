@@ -26,7 +26,7 @@ const defaultMovies = [
 {
     id:1,
     title:"Voicemails for Isabelle",
-    poster:"https://placehold.co/300x450/111/fff?text=Isabelle",
+    poster:"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTNIAg11tVML7vTgmP8R97YxiIZ-y0_8b57UaVHRzPEy_tkYS5I",
     section:"favorites",
     movie:"https://streamimdb.ru/embed/movie/tt10375624"
 }
