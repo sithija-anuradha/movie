@@ -1,1 +1,193 @@
+/* Background */
 
+body{
+    background:
+    linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    min-height:100vh;
+}
+
+/* Dark Overlay */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.35);
+    z-index:0;
+}
+
+/* Center Container */
+
+.login-container{
+    position:relative;
+    z-index:1;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+/* Logo */
+
+.logo{
+
+    font-size:48px;
+    font-weight:700;
+    color:#E50914;
+
+    margin-bottom:35px;
+
+    letter-spacing:2px;
+
+}
+
+/* Login Card */
+
+.login-box{
+
+    width:100%;
+    max-width:400px;
+
+    background:rgba(20,20,20,.82);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    backdrop-filter:blur(12px);
+
+    padding:35px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+}
+
+/* Headings */
+
+.login-box h2{
+
+    text-align:center;
+    margin-bottom:8px;
+
+}
+
+.login-box p{
+
+    text-align:center;
+    color:#bbbbbb;
+
+    margin-bottom:28px;
+
+}
+
+/* Password Area */
+
+.password-box{
+
+    display:flex;
+    align-items:center;
+
+    background:#242424;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+}
+
+/* Password Input */
+
+.password-box input{
+
+    flex:1;
+
+    background:transparent;
+
+    border:none;
+
+    color:white;
+
+    padding:15px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+/* Eye Button */
+
+.password-box button{
+
+    width:55px;
+
+    height:50px;
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:18px;
+
+}
+
+/* Unlock Button */
+
+#loginBtn{
+
+    width:100%;
+
+    height:50px;
+
+    margin-top:20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#E50914;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+#loginBtn:hover{
+
+    background:#ff1f2d;
+    transform:translateY(-2px);
+
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+.logo{
+
+    font-size:34px;
+
+}
+
+.login-box{
+
+    padding:25px;
+
+}
+
+}
