@@ -19,7 +19,7 @@ function setGreeting(){
     }
 
     document.getElementById("greetingText").innerText =
-    `${greeting}, ${userName} `;
+    `${greeting}, ${userName}`;
 
 }
 
