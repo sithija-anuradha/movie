@@ -73,19 +73,38 @@ function renderMovies(){
 function loadFeaturedMovie(){
 
     const all = [...defaultMovies, ...adminMovies];
+
+    if(all.length === 0){
+        document.getElementById("featuredBox").innerHTML =
+            "<p>No Featured Movie</p>";
+        return;
+    }
+
     const featured = all[all.length - 1];
 
     const box = document.getElementById("featuredBox");
 
-    if(featured){
-        box.innerHTML = `
-        <div class="card" onclick="openMovie(${featured.id})">
-            <img src="${featured.poster}">
-            <p>${featured.title}</p>
-        </div>`;
-    } else {
-        box.innerHTML = "<p>No Featured Movie</p>";
-    }
+    box.innerHTML = `
+        <img class="featured-bg"
+             src="${featured.poster}"
+             alt="${featured.title}">
+
+        <div class="featured-overlay">
+
+            <div class="featured-tag">
+                ⭐ Featured Movie
+            </div>
+
+            <div class="featured-title">
+                ${featured.title}
+            </div>
+
+            <button class="watch-btn" onclick="openMovie(${featured.id})">
+                ▶ Watch Now
+            </button>
+
+        </div>
+    `;
 }
 
 // ==============================
