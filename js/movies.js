@@ -107,23 +107,50 @@ function openMovie(id){
 
 }
 
-// ==============================
-// SEARCH
-// ==============================
-
-document.getElementById("searchInput").addEventListener("input", function(){
+document.getElementById("searchInput").addEventListener("input", function () {
 
     const value = this.value.toLowerCase();
 
-    document.querySelectorAll(".card").forEach(card => {
+    const filtered = movies.filter(movie =>
+        movie.title.toLowerCase().includes(value)
+    );
 
-        const text = card.innerText.toLowerCase();
+    renderFilteredMovies(filtered);
 
-        card.style.display = text.includes(value) ? "block" : "none";
+});
+
+function renderFilteredMovies(list){
+
+    favoritesRow.innerHTML = "";
+    requestedRow.innerHTML = "";
+    tonightRow.innerHTML = "";
+    recentRow.innerHTML = "";
+
+    list.forEach(movie => {
+
+        const card = `
+        <div class="card" onclick="openMovie(${movie.id})">
+            <img src="${movie.poster}">
+            <p>${movie.title}</p>
+        </div>
+        `;
+
+        if(movie.section === "favorites"){
+            favoritesRow.innerHTML += card;
+        }
+        else if(movie.section === "requested"){
+            requestedRow.innerHTML += card;
+        }
+        else if(movie.section === "tonight"){
+            tonightRow.innerHTML += card;
+        }
+        else if(movie.section === "recent"){
+            recentRow.innerHTML += card;
+        }
 
     });
 
-});
+}
 
 // ==============================
 // INIT
