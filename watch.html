@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Watch Movie</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/watch.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="topbar">
+
+    <button onclick="goBack()">⬅ Back</button>
+
+    <h2 id="movieTitle">Loading...</h2>
+
+</div>
+
+<!-- PLAYER -->
+<div class="player-container">
+
+    <iframe id="movieFrame" src="" allowfullscreen></iframe>
+
+</div>
+
+<!-- INFO -->
+<div class="info">
+
+    <p id="movieDesc">Loading movie details...</p>
+
+</div>
+
+<script src="js/watch.js"></script>
+
+</body>
+
+</html>
