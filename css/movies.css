@@ -111,15 +111,107 @@ body{
    FEATURED BOX
 ========================= */
 
+/* ==========================
+   FEATURED MOVIE
+========================== */
+
+.featured{
+    padding:20px;
+}
+
 .featured-box{
-    height:320px;
-    border-radius:12px;
-    background:#1a1a1a;
+    width:100%;
+    max-width:1200px;
+    height:520px;
+    margin:auto;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    background:#111;
+    box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+.featured-bg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.featured-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to right,
+        rgba(0,0,0,.95),
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.25)
+    );
+
     display:flex;
-    align-items:center;
+    flex-direction:column;
     justify-content:center;
-    color:#888;
+
+    padding:60px;
+}
+
+.featured-tag{
+    color:#ff2d2d;
     font-size:18px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.featured-title{
+    font-size:52px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.watch-btn{
+    width:180px;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#e50914;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.watch-btn:hover{
+    background:#ff2d2d;
+    transform:scale(1.05);
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.featured-box{
+
+    height:380px;
+
+}
+
+.featured-overlay{
+
+    padding:25px;
+
+}
+
+.featured-title{
+
+    font-size:32px;
+
+}
+
+.watch-btn{
+
+    width:150px;
+
+}
+
 }
 
 /* =========================
