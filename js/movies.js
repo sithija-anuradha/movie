@@ -26,7 +26,7 @@ const defaultMovies = [
 {
     id:1,
     title:"Voicemails for Isabelle",
-    poster:"https://www.google.com/imgres?q=poster%3A%20https%3A%2F%2Fplacehold.co%2F300x450&imgurl=https%3A%2F%2Fplacehold.net%2F2.png&imgrefurl=https%3A%2F%2Fplacehold.net%2F&docid=dlFeowcDWll0qM&tbnid=yAzfkwt9ytXXNM&vet=12ahUKEwjgqLSMwrOVAxUH4TgGHTS0DKgQnPAOegQIQhAA..i&w=600&h=600&hcb=2&ved=2ahUKEwjgqLSMwrOVAxUH4TgGHTS0DKgQnPAOegQIQhAA",
+    poster:"https://i.redd.it/zhq7xdthmf9h1.jpeg",
     section:"favorites",
     movie:"https://streamimdb.ru/embed/movie/tt10375624"
 }
