@@ -1,12 +1,9 @@
 
 // ==============================
-// USER
+// USER + GREETING
 // ==============================
 const userName = "Pancho🎀";
 
-// ==============================
-// GUEST GREETING (optional safe)
-// ==============================
 function setGreeting(){
 
     const hour = new Date().getHours();
@@ -34,7 +31,7 @@ function setGreeting(){
 setGreeting();
 
 // ==============================
-// DEFAULT MOVIES
+// DEFAULT MOVIE
 // ==============================
 const defaultMovies = [
 {
@@ -51,7 +48,9 @@ const defaultMovies = [
 // ==============================
 let adminMovies = JSON.parse(localStorage.getItem("movies")) || [];
 
-// merge
+// ==============================
+// COMBINE ALL MOVIES
+// ==============================
 let movies = [...defaultMovies, ...adminMovies];
 
 // ==============================
@@ -63,14 +62,13 @@ const tonightRow = document.getElementById("tonightRow");
 const recentRow = document.getElementById("recentRow");
 
 // ==============================
-// RENDER MOVIES
+// RENDER MAIN SECTIONS
 // ==============================
 function renderMovies(){
 
     favoritesRow.innerHTML = "";
     requestedRow.innerHTML = "";
     tonightRow.innerHTML = "";
-    recentRow.innerHTML = "";
 
     movies.forEach(movie => {
 
@@ -90,22 +88,19 @@ function renderMovies(){
         else if(movie.section === "tonight"){
             tonightRow.innerHTML += card;
         }
-        else if(movie.section === "recent"){
-            recentRow.innerHTML += card;
-        }
 
     });
 
 }
 
 // ==============================
-// FEATURED MOVIE FIX
+// FEATURED MOVIE (AUTO LATEST)
 // ==============================
 function loadFeaturedMovie(){
 
     const allMovies = [...defaultMovies, ...adminMovies];
 
-    const featured = allMovies.find(m => m.section === "featured");
+    const featured = allMovies[allMovies.length - 1];
 
     const box = document.getElementById("featuredBox");
 
@@ -119,9 +114,33 @@ function loadFeaturedMovie(){
         `;
 
     } else {
-        box.innerHTML = "<p>No Featured Movie Selected</p>";
+        box.innerHTML = "<p>No Featured Movie</p>";
     }
+}
 
+// ==============================
+// RECENT MOVIES (ALL + NEWEST FIRST)
+// ==============================
+function renderRecent(){
+
+    const allMovies = [...defaultMovies, ...adminMovies];
+
+    const recentMovies = [...allMovies].reverse();
+
+    recentRow.innerHTML = "";
+
+    recentMovies.forEach(movie => {
+
+        const card = `
+        <div class="card" onclick="openMovie(${movie.id})">
+            <img src="${movie.poster}">
+            <p>${movie.title}</p>
+        </div>
+        `;
+
+        recentRow.innerHTML += card;
+
+    });
 }
 
 // ==============================
@@ -134,7 +153,6 @@ function openMovie(id){
     localStorage.setItem("selectedMovie", JSON.stringify(movie));
 
     window.location.href = "watch.html";
-
 }
 
 // ==============================
@@ -177,9 +195,6 @@ function renderFilteredMovies(list){
         else if(movie.section === "tonight"){
             tonightRow.innerHTML += card;
         }
-        else if(movie.section === "recent"){
-            recentRow.innerHTML += card;
-        }
 
     });
 
@@ -190,3 +205,4 @@ function renderFilteredMovies(list){
 // ==============================
 renderMovies();
 loadFeaturedMovie();
+renderRecent();
