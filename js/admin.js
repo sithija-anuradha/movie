@@ -1,7 +1,12 @@
-// Load existing movies
+
+// ==============================
+// LOAD MOVIES
+// ==============================
 let movies = JSON.parse(localStorage.getItem("movies")) || [];
 
-// Add Movie
+// ==============================
+// ADD MOVIE
+// ==============================
 function addMovie(){
 
     const title = document.getElementById("title").value;
@@ -9,10 +14,7 @@ function addMovie(){
     const movie = document.getElementById("movie").value;
     const section = document.getElementById("section").value;
 
-    if(!title || !poster || !movie){
-        alert("Please fill all fields");
-        return;
-    }
+    if(!title || !poster || !movie) return alert("Fill all fields");
 
     const newMovie = {
         id: Date.now(),
@@ -23,33 +25,57 @@ function addMovie(){
     };
 
     movies.push(newMovie);
+    localStorage.setItem("movies", JSON.stringify(movies));
+
+    renderAdminMovies();
+}
+
+// ==============================
+// DELETE
+// ==============================
+function deleteMovie(index){
+
+    movies.splice(index, 1);
+    localStorage.setItem("movies", JSON.stringify(movies));
+
+    renderAdminMovies();
+}
+
+// ==============================
+// EDIT
+// ==============================
+function editMovie(index){
+
+    const newTitle = prompt("New Title:", movies[index].title);
+    const newPoster = prompt("New Poster:", movies[index].poster);
+
+    if(newTitle) movies[index].title = newTitle;
+    if(newPoster) movies[index].poster = newPoster;
 
     localStorage.setItem("movies", JSON.stringify(movies));
 
-    renderMovies();
-
-    alert("Movie added successfully!");
-
+    renderAdminMovies();
 }
 
-// Render list
-function renderMovies(){
+// ==============================
+// RENDER ADMIN
+// ==============================
+function renderAdminMovies(){
 
-    const list = document.getElementById("movieList");
-
+    const list = document.getElementById("adminList");
     list.innerHTML = "";
 
-    movies.forEach(m => {
+    movies.forEach((m, i) => {
 
         list.innerHTML += `
-        <div class="movie-item">
-            <b>${m.title}</b> - ${m.section}
-        </div>
-        `;
+        <div class="admin-card">
+            <img src="${m.poster}">
+            <p>${m.title}</p>
 
+            <button onclick="editMovie(${i})">✏ Edit</button>
+            <button onclick="deleteMovie(${i})">🗑 Delete</button>
+        </div>`;
     });
-
 }
 
-// Start
-renderMovies();
+renderAdminMovies();
