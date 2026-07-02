@@ -38,6 +38,14 @@ body{
     outline:none;
 }
 
+.greeting{
+    padding:20px 8%;
+}
+
+#greetingText{
+    font-size:28px;
+    color:white;
+}
 /* =========================
    SECTIONS
 ========================= */
