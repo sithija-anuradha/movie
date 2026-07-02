@@ -26,7 +26,7 @@ const defaultMovies = [
 {
     id:1,
     title:"Voicemails for Isabelle",
-    poster:"https://i.redd.it/zhq7xdthmf9h1.jpeg",
+    poster:"https://www.reddit.com/r/netflix/comments/1ufaakm/voicemails_for_isabelle_my_controversial_opinion/",
     section:"favorites",
     movie:"https://streamimdb.ru/embed/movie/tt10375624"
 }
