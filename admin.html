@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <h1>👑 Admin Panel</h1>
+
+    <p>Add movies to Private Cinema</p>
+
+    <div class="form">
+
+        <input type="text" id="title" placeholder="Movie Title">
+        <input type="text" id="poster" placeholder="Poster URL">
+        <input type="text" id="movie" placeholder="Movie Embed Link">
+
+        <select id="section">
+            <option value="favorites">❤️ Favorites</option>
+            <option value="requested">🎁 Requested</option>
+            <option value="tonight">🎬 Movies For Tonight</option>
+            <option value="recent">🆕 Recently Added</option>
+        </select>
+
+        <button onclick="addMovie()">➕ Add Movie</button>
+
+    </div>
+
+    <h2>Current Movies</h2>
+
+    <div id="movieList"></div>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+
+</html>
