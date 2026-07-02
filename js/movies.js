@@ -92,7 +92,7 @@ function loadFeaturedMovie(){
         <div class="featured-overlay">
 
             <div class="featured-tag">
-                ⭐ Featured Movie
+                ⭐ Featured Movie ⭐
             </div>
 
             <div class="featured-title">
