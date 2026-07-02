@@ -122,6 +122,11 @@ body{
     font-size:18px;
 }
 
+.featured-box .card{
+    width:200px;
+    margin:auto;
+}
+
 /* =========================
    MOBILE
 ========================= */
