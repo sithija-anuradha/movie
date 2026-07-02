@@ -1,1 +1,250 @@
+/* =========================
+   NAVBAR
+========================= */
 
+.navbar{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 8%;
+
+    background:#111;
+
+    border-bottom:1px solid #222;
+
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#E50914;
+}
+
+.nav-right input{
+
+    width:260px;
+
+    height:42px;
+
+    background:#1f1f1f;
+
+    border:1px solid #333;
+
+    border-radius:8px;
+
+    color:white;
+
+    padding:0 15px;
+
+    outline:none;
+
+}
+
+.nav-right input:focus{
+
+    border-color:#E50914;
+
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    height:350px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 8%;
+
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(15,15,15,1)),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+}
+
+.hero-content h1{
+
+    font-size:48px;
+
+    margin-bottom:10px;
+
+}
+
+.hero-content p{
+
+    font-size:18px;
+
+    color:#cccccc;
+
+    max-width:500px;
+
+}
+
+/* =========================
+   MOVIES
+========================= */
+
+.movies-section{
+
+    padding:40px 8%;
+
+}
+
+.movies-section h2{
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+/* Movie Grid */
+
+.movie-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+/* Movie Card */
+
+.movie-card{
+
+    background:#181818;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.movie-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.45);
+
+}
+
+.movie-card img{
+
+    width:100%;
+
+    height:320px;
+
+    object-fit:cover;
+
+}
+
+.movie-info{
+
+    padding:15px;
+
+}
+
+.movie-info h3{
+
+    margin-bottom:8px;
+
+}
+
+.movie-info p{
+
+    color:#bfbfbf;
+
+    font-size:14px;
+
+    margin-bottom:15px;
+
+}
+
+.movie-info button{
+
+    width:100%;
+
+    height:42px;
+
+    background:#E50914;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.movie-info button:hover{
+
+    background:#ff1f2d;
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+    .nav-right{
+
+        width:100%;
+
+    }
+
+    .nav-right input{
+
+        width:100%;
+
+    }
+
+    .hero{
+
+        height:250px;
+
+    }
+
+    .hero-content h1{
+
+        font-size:34px;
+
+    }
+
+    .hero-content p{
+
+        font-size:15px;
+
+    }
+
+}
