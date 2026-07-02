@@ -1,175 +1,84 @@
-/* =========================
-   GLOBAL LAYOUT
-========================= */
 
 body{
-    background:#0f0f0f;
+    margin:0;
+    font-family:Arial;
+    background:#111;
     color:white;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-
+/* NAVBAR */
 .navbar{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    padding:15px 8%;
-    background:#111;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-
-.logo{
-    font-size:22px;
-    font-weight:bold;
-    color:#E50914;
+    padding:15px;
+    background:#000;
 }
 
 .navbar input{
-    padding:10px 14px;
+    padding:10px;
     border-radius:8px;
-    border:none;
-    width:220px;
+    border:1px solid transparent;
     background:#222;
     color:white;
-    outline:none;
+    transition:0.3s;
 }
 
-.greeting{
-    padding:20px 8%;
+.navbar input:hover{
+    border:1px solid red;
 }
 
-#greetingText{
-    font-size:28px;
-    color:white;
-}
-/* =========================
-   SECTIONS
-========================= */
-
-.section,
-.featured{
-    padding:25px 8%;
+.navbar input:focus{
+    border:1px solid red;
+    box-shadow:0 0 10px red;
 }
 
-.section h2,
-.featured h2{
-    margin-bottom:15px;
+/* SECTIONS */
+.section{
+    padding:20px;
 }
-
-/* =========================
-   ROW (HORIZONTAL SCROLL)
-========================= */
 
 .row{
     display:flex;
     gap:15px;
-    overflow-x:auto;
-    padding-bottom:10px;
-    scroll-behavior:smooth;
+    flex-wrap:wrap;
 }
 
-/* hide scrollbar */
-.row::-webkit-scrollbar{
-    display:none;
-}
-
-/* =========================
-   MOVIE CARD
-========================= */
-
+/* CARD */
 .card{
-    min-width:170px;
-    background:#1a1a1a;
-    border-radius:10px;
-    overflow:hidden;
+    width:150px;
     cursor:pointer;
     transition:0.3s;
-    flex-shrink:0;
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
 }
 
 .card:hover{
     transform:scale(1.05);
 }
 
-.card img{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-}
-
-.card p{
-    padding:10px;
-    font-size:14px;
-    text-align:center;
-}
-
-/* =========================
-   FEATURED BOX
-========================= */
-
+/* FEATURED */
 .featured-box{
-    height:320px;
-    border-radius:12px;
-    background:#1a1a1a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#888;
-    font-size:18px;
+    padding:20px;
 }
 
-.featured-box .card{
+/* ADMIN */
+.admin-card{
     width:200px;
-    margin:auto;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    .navbar{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .navbar input{
-        width:100%;
-    }
-
-    .card{
-        min-width:140px;
-    }
-
-    .card img{
-        height:200px;
-    }
-
-}
-
-.navbar input{
-    padding:10px 14px;
-    border-radius:8px;
-    width:220px;
     background:#222;
-    color:white;
-    outline:none;
-    border:1px solid transparent;
-    transition:0.3s;
+    padding:10px;
+    border-radius:10px;
+    margin:10px;
 }
 
-/* hover = red border */
-.navbar input:hover{
-    border:1px solid #E50914;
+.admin-card img{
+    width:100%;
 }
 
-/* focus = stronger red glow */
-.navbar input:focus{
-    border:1px solid #E50914;
-    box-shadow:0 0 10px rgba(229,9,20,0.6);
+.admin-card button{
+    margin:5px;
+    padding:5px;
+    cursor:pointer;
 }
