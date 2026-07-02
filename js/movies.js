@@ -1,158 +1,116 @@
-// ==============================
-// Movie Data
-// ==============================
+// 👤 User name (optional for future use)
+const userName = "Pancho🎀";
 
+// 🎬 MOVIE DATA
 const movies = [
-
 {
     id:1,
-
     title:"Voicemails for Isabelle",
-
-    year:"2025",
-
-    genre:"Romance",
-
-    rating:"8.7",
-
-    duration:"1h 42m",
-
-    description:"A touching romantic story.",
-
-    poster:"https://placehold.co/400x600/111111/ffffff?text=Voicemails+for+Isabelle",
-
-    movie:"https://streamimdb.ru/embed/movie/tt10375624"
+    poster:"https://placehold.co/300x450/111/fff?text=Isabelle",
+    section:"favorites"
 },
-
 {
     id:2,
-
-    title:"Coming Soon",
-
-    year:"2026",
-
-    genre:"Action",
-
-    rating:"--",
-
-    duration:"--",
-
-    description:"Coming Soon",
-
-    poster:"https://placehold.co/400x600/222222/ffffff?text=Coming+Soon",
-
-    movie:"#"
+    title:"Requested Movie 1",
+    poster:"https://placehold.co/300x450/222/fff?text=Request",
+    section:"requested"
 },
-
 {
     id:3,
-
-    title:"Coming Soon",
-
-    year:"2026",
-
-    genre:"Drama",
-
-    rating:"--",
-
-    duration:"--",
-
-    description:"Coming Soon",
-
-    poster:"https://placehold.co/400x600/333333/ffffff?text=Coming+Soon",
-
-    movie:"#"
+    title:"Movie for Tonight",
+    poster:"https://placehold.co/300x450/333/fff?text=Tonight",
+    section:"tonight"
+},
+{
+    id:4,
+    title:"Recently Added Film",
+    poster:"https://placehold.co/300x450/444/fff?text=New",
+    section:"recent"
+},
+{
+    id:5,
+    title:"Another Favorite",
+    poster:"https://placehold.co/300x450/555/fff?text=Fav",
+    section:"favorites"
 }
-
 ];
 
 // ==============================
-// Elements
+// RENDER MOVIES
 // ==============================
 
-const movieGrid = document.getElementById("movieGrid");
-const searchInput = document.getElementById("searchInput");
+function renderMovies(){
 
-// ==============================
-// Display Movies
-// ==============================
+    movies.forEach(movie => {
 
-function displayMovies(movieList){
-
-    movieGrid.innerHTML="";
-
-    movieList.forEach(movie=>{
-
-        movieGrid.innerHTML += `
-
-        <div class="movie-card">
+        const card = `
+        <div class="card" onclick="openMovie(${movie.id})">
 
             <img src="${movie.poster}" alt="${movie.title}">
 
-        <div class="movie-info">
-
-        <div class="movie-top">
-
-        <span>⭐ ${movie.rating}</span>
-
-        <span>${movie.year}</span>
+            <p>${movie.title}</p>
 
         </div>
-
-    <h3>${movie.title}</h3>
-
-    <p>${movie.genre}</p>
-
-    <small>${movie.duration}</small>
-
-    <button onclick="watchMovie(${movie.id})">
-        ▶ Watch Now
-    </button>
-
-           </div>
-
-        </div>
-
         `;
+
+        if(movie.section === "favorites"){
+            document.getElementById("favoritesRow").innerHTML += card;
+        }
+
+        if(movie.section === "requested"){
+            document.getElementById("requestedRow").innerHTML += card;
+        }
+
+        if(movie.section === "tonight"){
+            document.getElementById("tonightRow").innerHTML += card;
+        }
+
+        if(movie.section === "recent"){
+            document.getElementById("recentRow").innerHTML += card;
+        }
 
     });
 
 }
 
 // ==============================
-// Search
+// OPEN MOVIE
 // ==============================
 
-searchInput.addEventListener("input",()=>{
+function openMovie(id){
 
-    const keyword = searchInput.value.toLowerCase();
+    const movie = movies.find(m => m.id === id);
 
-    const filtered = movies.filter(movie=>
+    localStorage.setItem("selectedMovie", JSON.stringify(movie));
 
-        movie.title.toLowerCase().includes(keyword)
-
-    );
-
-    displayMovies(filtered);
-
-});
-
-// ==============================
-// Watch Movie
-// ==============================
-
-function watchMovie(id){
-
-    const movie = movies.find(m=>m.id===id);
-
-    localStorage.setItem("selectedMovie",JSON.stringify(movie));
-
-    window.location.href="watch.html";
+    window.location.href = "watch.html";
 
 }
 
 // ==============================
-// Start
+// SEARCH FUNCTION
 // ==============================
 
-displayMovies(movies);
+document.getElementById("searchInput").addEventListener("input", function(){
+
+    const value = this.value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        const text = card.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            card.style.display = "block";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
+
+});
+
+// ==============================
+// INIT
+// ==============================
+
+renderMovies();
