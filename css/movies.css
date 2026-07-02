@@ -315,6 +315,47 @@ body{
     transition:0.3s;
 }
 
+@media (max-width:768px){
+
+    .navbar{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+        text-align:center;
+
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-right{
+
+        justify-self:center;
+
+    }
+
+    #searchInput{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+    .logo{
+
+        font-size:24px;
+
+    }
+
+    #greetingText{
+
+        font-size:20px;
+
+    }
+
+}
 /* hover = red border */
 .navbar input:hover{
     border:1px solid #E50914;
