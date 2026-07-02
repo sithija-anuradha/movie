@@ -1,0 +1,64 @@
+/* GLOBAL */
+body{
+    margin:0;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial;
+}
+
+/* TOP BAR */
+.topbar{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:15px 8%;
+    background:#111;
+    position:sticky;
+    top:0;
+}
+
+.topbar button{
+    background:#E50914;
+    border:none;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* TITLE */
+.topbar h2{
+    font-size:18px;
+}
+
+/* PLAYER */
+.player-container{
+    padding:20px 8%;
+}
+
+.player-container iframe{
+    width:100%;
+    height:70vh;
+    border:none;
+    border-radius:12px;
+}
+
+/* INFO */
+.info{
+    padding:10px 8%;
+    color:#aaa;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .player-container iframe{
+        height:50vh;
+    }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+}
