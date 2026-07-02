@@ -32,11 +32,7 @@ body{
     box-shadow:0 0 10px red;
 }
 
-/* SECTIONS */
-.section{
-    padding:20px;
-}
-
+/* ROWS */
 .row{
     display:flex;
     gap:15px;
@@ -59,22 +55,12 @@ body{
     transform:scale(1.05);
 }
 
-/* FEATURED */
-.featured-box{
-    padding:20px;
-}
-
 /* ADMIN */
 .admin-card{
-    width:200px;
     background:#222;
     padding:10px;
-    border-radius:10px;
     margin:10px;
-}
-
-.admin-card img{
-    width:100%;
+    border-radius:10px;
 }
 
 .admin-card button{
